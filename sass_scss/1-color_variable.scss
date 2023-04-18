@@ -1,11 +1,11 @@
 /* My style */
-body {
-  .container {
-    color: $color;
-  }
-  p {
-    color: $color;
-  }
-}
 
 $color: #3d3d3d;
+
+body {
+  color: $color;
+}
+
+p {
+  color: $color;
+}
