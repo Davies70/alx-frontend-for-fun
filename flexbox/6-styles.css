@@ -385,7 +385,7 @@ ul.row {
   letter-spacing: var(--nav-item-letter-spacing);
   /* display: var(--nav-item-display); */
 }
-.nav-item + .nav .nav-item {
+.nav .nav-item + .nav-item {
   margin: var(--nav-item-margin);
 }
 .nav .nav-link {
