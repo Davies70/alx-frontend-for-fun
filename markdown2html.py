@@ -18,7 +18,7 @@ if __name__ == "__main__":
             for i in range(len(contents)):
                 if contents[i] == "#":
                     n += 1
-                if contents[i] == "\n":
+                if contents[i] == "\n" and contents[i + 1] != "":
                     start = n + count
                     f.write(f"<h{n}>{contents[start + 1 : i]}</h{n}>\n")
                     count = i
