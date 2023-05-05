@@ -10,8 +10,7 @@ if __name__ == "__main__":
     try:
         with open(sys.argv[1], "r") as f:
             contents = f.read()
-            if contents == "":
-                sys.exit(0)
+            sys.exit(0)
     except FileNotFoundError:
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
         sys.exit(1)
