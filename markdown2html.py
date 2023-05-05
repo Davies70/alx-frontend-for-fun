@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Python to Markdown """
+""" Python to Markdown converter """
 
 import sys
 
