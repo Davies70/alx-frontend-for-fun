@@ -1,10 +1,3 @@
-# title
-
-- hello Holberton
-- Holberton School
-- Webstack
-
-## sub title
-
-- super
-- cool
+# My title
+* Hello
+* Bye

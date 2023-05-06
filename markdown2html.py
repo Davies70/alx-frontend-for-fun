@@ -38,6 +38,19 @@ if __name__ == "__main__":
                         f.write("</ul>\n")
                     else:
                         f.write("<li>" + lines[i][2:] + "</li>\n")
+                elif lines[i].startswith("* "):
+                    if i == 0:
+                        f.write("<ol>\n")
+                    elif not lines[i - 1].startswith("* "):
+                        f.write("<ol>\n")
+                    if i == len(lines) - 1:
+                        f.write("<li>" + lines[i][2:] + "</li>\n")
+                        f.write("</ol>\n")
+                    elif not lines[i + 1].startswith("* "):
+                        f.write("<li>" + lines[i][2:] + "</li>\n")
+                        f.write("</ol>\n")
+                    else:
+                        f.write("<li>" + lines[i][2:] + "</li>\n")
         sys.exit(0)
     except FileNotFoundError:
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
