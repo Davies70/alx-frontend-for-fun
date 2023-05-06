@@ -4,7 +4,6 @@
 import sys
 
 if __name__ == "__main__":
-    unordered_list = []
     if len(sys.argv) != 3:
         print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
         sys.exit(1)
@@ -13,28 +12,31 @@ if __name__ == "__main__":
             contents = f.read()
             lines = contents.splitlines()
         with open(sys.argv[2], "r+") as f:
-            for line in lines:
-                if line.startswith("# "):
-                    f.write("<h1>" + line[2:] + "</h1>\n")
-                elif line.startswith("## "):
-                    f.write("<h2>" + line[3:] + "</h2>\n")
-                elif line.startswith("### "):
-                    f.write("<h3>" + line[4:] + "</h3>\n")
-                elif line.startswith("#### "):
-                    f.write("<h4>" + line[5:] + "</h4>\n")
-                elif line.startswith("##### "):
-                    f.write("<h5>" + line[6:] + "</h5>\n")
-                elif line.startswith("###### "):
-                    f.write("<h6>" + line[7:] + "</h6>\n")
-                elif line.startswith("- "):
-                    unordered_list.append(line[2:])
-            for i in range(len(unordered_list)):
-                if i == 0:
-                    f.write("<ul>\n")
-                f.write('<li>' + unordered_list[i] + '</li>\n')
-                if i is len(unordered_list) - 1:
-                    f.write("</ul>\n")
-            unordered_list = []
+            for i in range(len(lines)):
+                if lines[i].startswith("# "):
+                    f.write("<h1>" + lines[i][2:] + "</h1>\n")
+                elif lines[i].startswith("## "):
+                    f.write("<h2>" + lines[i][3:] + "</h2>\n")
+                elif lines[i].startswith("### "):
+                    f.write("<h3>" + lines[i][4:] + "</h3>\n")
+                elif lines[i].startswith("#### "):
+                    f.write("<h4>" + lines[i][5:] + "</h4>\n")
+                elif lines[i].startswith("##### "):
+                    f.write("<h5>" + lines[i][6:] + "</h5>\n")
+                elif lines[i].startswith("###### "):
+                    f.write("<h6>" + lines[i][7:] + "</h6>\n")
+                elif lines[i].startswith("- "):
+                    if i == 0:
+                        f.write("<ul>\n")
+                    elif not lines[i - 1].startswith("- "):
+                        f.write("<ul>\n")
+                    if i == len(lines) - 1:
+                        f.write("<li>" + lines[i][2:] + "</li>\n")
+                        f.write("</ul>")
+                    elif not lines[i + 1].startswith("- "):
+                        f.write("</ul>")
+                    else:
+                        f.write("<li>" + lines[i][2:] + "</li>\n")
         sys.exit(0)
     except FileNotFoundError:
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
