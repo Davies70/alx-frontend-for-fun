@@ -53,7 +53,7 @@ if __name__ == "__main__":
                         f.write("<li>" + lines[i][2:] + "</li>\n")
                 elif not lines[i] == "":
                     if i == 0:
-                        f.write("<p>" + lines[i] + "<p>\n")
+                        f.write("<p>" + lines[i] + "</p>\n")
                     elif i == len(lines) - 1:
                         f.write("<p>" + lines[i] + "</p>\n")
                     elif not lines[i + 1] == "":
