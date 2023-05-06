@@ -51,6 +51,17 @@ if __name__ == "__main__":
                         f.write("</ol>\n")
                     else:
                         f.write("<li>" + lines[i][2:] + "</li>\n")
+                elif not lines[i] == "":
+                    if i == 0:
+                        f.write("<p>" + lines[i] + "<p>\n")
+                    elif i == len(lines) - 1:
+                        f.write("<p>" + lines[i] + "</p>\n")
+                    elif not lines[i + 1] == "":
+                        f.write("<p>" + lines[i] + "</p>\n")
+                        f.write("<b/>\n")
+                    else:
+                        f.write("<p>" + lines[i] + "</p>\n")
+
         sys.exit(0)
     except FileNotFoundError:
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
