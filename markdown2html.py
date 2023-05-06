@@ -58,7 +58,7 @@ if __name__ == "__main__":
                         f.write("<p>" + lines[i] + "</p>\n")
                     elif not lines[i + 1] == "":
                         f.write("<p>" + lines[i] + "</p>\n")
-                        f.write("<b/>\n")
+                        f.write("<br/>\n")
                     else:
                         f.write("<p>" + lines[i] + "</p>\n")
 
