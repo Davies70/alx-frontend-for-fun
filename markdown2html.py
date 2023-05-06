@@ -32,9 +32,10 @@ if __name__ == "__main__":
                         f.write("<ul>\n")
                     if i == len(lines) - 1:
                         f.write("<li>" + lines[i][2:] + "</li>\n")
-                        f.write("</ul>")
+                        f.write("</ul>\n")
                     elif not lines[i + 1].startswith("- "):
-                        f.write("</ul>")
+                        f.write("<li>" + lines[i][2:] + "</li>\n")
+                        f.write("</ul>\n")
                     else:
                         f.write("<li>" + lines[i][2:] + "</li>\n")
         sys.exit(0)
