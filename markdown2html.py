@@ -27,9 +27,9 @@ if __name__ == "__main__":
                     dash_counter = 1
                     while dash_counter <= dash_count:
                         if dash_counter % 2 == 1:
-                            lines[j] = lines[j].replace("__", "<em>")
+                            lines[j] = lines[j].replace("__", "<em>", 1)
                         else:
-                            lines[j] = lines[j].replace("__", "</em>")
+                            lines[j] = lines[j].replace("__", "</em>", 1)
                         dash_counter += 1
         with open(sys.argv[2], "w+") as f:
             for i in range(len(lines)):
