@@ -1,4 +1,10 @@
-Hello Holberton
+# My title
+- He**l**lo
+- Bye
 
-How are you?
-Fine and you?
+Hello
+
+I'm **a** text
+with __2 lines__
+
+**Or in bold**

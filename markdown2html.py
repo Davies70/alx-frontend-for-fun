@@ -9,8 +9,28 @@ if __name__ == "__main__":
         sys.exit(1)
     try:
         with open(sys.argv[1], "r") as f:
-            contents = f.read()
-            lines = contents.splitlines()
+            content = f.read()
+            lines = content.splitlines()
+            my_lines = lines[:]
+            for j in range(len(lines)):
+                asterisk_count = lines[j].count("**")
+                dash_count = lines[j].count("__")
+                if asterisk_count >= 2:
+                    asterisk_counter = 1
+                    while asterisk_counter <= asterisk_count:
+                        if asterisk_counter % 2 == 1:
+                            lines[j] = lines[j].replace("**", "<b>", 1)
+                        else:
+                            lines[j] = lines[j].replace("**", "</b>", 1)
+                        asterisk_counter += 1
+                if dash_count >= 2:
+                    dash_counter = 1
+                    while dash_counter <= dash_count:
+                        if dash_counter % 2 == 1:
+                            lines[j] = lines[j].replace("__", "<em>")
+                        else:
+                            lines[j] = lines[j].replace("__", "</em>")
+                        dash_counter += 1
         with open(sys.argv[2], "w+") as f:
             for i in range(len(lines)):
                 if lines[i].startswith("# "):
@@ -75,6 +95,7 @@ if __name__ == "__main__":
                             f.write(lines[i] + "\n" + "</p>\n")
                         else:
                             f.write(lines[i] + "\n" + "<br />\n")
+
         sys.exit(0)
     except FileNotFoundError:
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
