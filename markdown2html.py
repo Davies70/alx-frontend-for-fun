@@ -11,7 +11,7 @@ if __name__ == "__main__":
         with open(sys.argv[1], "r") as f:
             contents = f.read()
             lines = contents.splitlines()
-        with open(sys.argv[2], "r+") as f:
+        with open(sys.argv[2], "w+") as f:
             for i in range(len(lines)):
                 if lines[i].startswith("# "):
                     f.write("<h1>" + lines[i][2:] + "</h1>\n")
