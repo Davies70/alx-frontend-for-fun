@@ -2,6 +2,7 @@
 """ Python to Markdown converter """
 
 import sys
+import hashlib
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
@@ -11,7 +12,6 @@ if __name__ == "__main__":
         with open(sys.argv[1], "r") as f:
             content = f.read()
             lines = content.splitlines()
-            my_lines = lines[:]
             for j in range(len(lines)):
                 asterisk_count = lines[j].count("**")
                 dash_count = lines[j].count("__")
@@ -31,6 +31,20 @@ if __name__ == "__main__":
                         else:
                             lines[j] = lines[j].replace("__", "</em>", 1)
                         dash_counter += 1
+                if "(" in lines[j]:
+                    lines[j] = lines[j].replace("((", "")
+                    lines[j] = lines[j].replace("))", "")
+                    lines[j] = lines[j].replace("c", "")
+                    lines[j] = lines[j].replace("C", "")
+                if "[" in lines[j]:
+                    start = lines[j].find("[[")
+                    end = lines[j].find("]]")
+                    substring = lines[j][start + 2 : end ]
+                    lines[j] = lines[j].replace("[[", "")
+                    lines[j] = lines[j].replace("]]", "")
+                    hash = hashlib.md5(lines[j].encode()).hexdigest()
+                    lines[j] = lines[j].replace(substring, hash)
+
         with open(sys.argv[2], "w+") as f:
             for i in range(len(lines)):
                 if lines[i].startswith("# "):
