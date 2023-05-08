@@ -32,17 +32,21 @@ if __name__ == "__main__":
                             lines[j] = lines[j].replace("__", "</em>", 1)
                         dash_counter += 1
                 if "(" in lines[j]:
+                    start = lines[j].find('((')
+                    end = lines[j].find('))')
+                    substring = lines[j][start + 2 : end]
                     lines[j] = lines[j].replace("((", "")
                     lines[j] = lines[j].replace("))", "")
-                    lines[j] = lines[j].replace("c", "")
-                    lines[j] = lines[j].replace("C", "")
+                    new_substring = substring.replace("c", "")
+                    new_substring = new_substring.replace("C", "")
+                    lines[j] = lines[j].replace(substring, new_substring)
                 if "[" in lines[j]:
                     start = lines[j].find("[[")
                     end = lines[j].find("]]")
                     substring = lines[j][start + 2 : end ]
                     lines[j] = lines[j].replace("[[", "")
                     lines[j] = lines[j].replace("]]", "")
-                    hash = hashlib.md5(lines[j].encode()).hexdigest()
+                    hash = hashlib.md5(substring.encode()).hexdigest()
                     lines[j] = lines[j].replace(substring, hash)
 
         with open(sys.argv[2], "w+") as f:
