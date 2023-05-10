@@ -903,7 +903,7 @@ textarea:focus {
   letter-spacing: 0.019rem;
   color: var(--color-dark-grey);
   font-size: var(--font-size-small);
-  min-height: 0;
+  max-height: 0;
   transition: 0.3s;
   overflow: hidden;
 }
